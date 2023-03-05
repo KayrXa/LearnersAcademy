@@ -1,6 +1,7 @@
 <%@page import="com.bean.Students"%>
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -42,30 +43,32 @@ p {
 	<div class="container">
 		<table class="table">
 			<tr>
+				<th>Id</th>
 				<th>Name</th>
 				<th>Surname</th>
 				<th>Birth number</th>
 				<th>Email</th>
 				<th>Phone number</th>
+				<th>Class Id</th>
 				<th>Edit</th>
 				<th>Delete</th>
 			
-			</tr>
-		<c:forEach var="student" items="${request.Scope.students}"> 
+			</tr>		
+		<c:forEach var="st" items="${requestScope.studentList }">
 			<tr>
-					
-					<td>${student.name}</td>
-					<td>${student.sur}</td>
-					<td>${student.brthno}</td>
-					<td>${student.phone}</td>
-					<td>${student.semail}</td>
-							
-					<td><a href="edit?email=${student.brthno }">Edit</a> </td>
-					<td><a href="delete?email=${student.brthno }">Delete</a> </td>
-				</tr>
-		
-		
+				<td>${st.stid}</td>
+				<td>${st.name}</td>
+				<td>${st.sur}</td>
+				<td>${st.brthno}</td>
+				<td>${st.phone}</td>
+				<td>${st.email}</td>
+				<td>${st.cid}</td>
+				<td><a href="edit?email=${st.stid}">Edit</a> </td>
+				<td><a href="delete?email=${st.stid}">Del</a> </td>
+			</tr>
 		</c:forEach>
+			
+
 		</table>
 	</div>	
 			
@@ -85,12 +88,12 @@ p {
 				<div class="col-lg-6 col-lg-offset-3">
 					<div class="form-group">
 						<label for="name">Student's First Name: </label> <input type="text"
-							class="form-control" id="name" placeholder="Enter First Name" name="name">
+							class="form-control" id="Name" placeholder="Enter First Name" name="name">
 					</div>
 
 					<div class="form-group">
 						<label for="sur">Student's Last Name: </label> <input type="text"
-							class="form-control" id="sur" placeholder="Enter Surname" name="sur">
+							class="form-control" id="Surname" placeholder="Enter Surname" name="sur">
 					</div>
 					<div class="form-group">
 						<label for="cid">Class ID: </label> <input type="text"
@@ -98,15 +101,15 @@ p {
 					</div>
 					<div class="form-group">
 						<label for="brthno">Birth number: </label> <input type="text"
-							class="form-control" id="brthno" placeholder="Enter Birth number" name="brthno">
+							class="form-control" id="Birth_number" placeholder="Enter Birth number" name="brthno">
 					</div>
 					<div class="form-group">
 						<label for="phone">Phone number: </label> <input type="text"
-							class="form-control" id="phone" placeholder="Enter Phone number" name="phone">
+							class="form-control" id="Phone_number" placeholder="Enter Phone number" name="phone">
 					</div>
 					<div class="form-group">
 						<label for="email">Email: </label> <input type="text"
-							class="form-control" id="email" placeholder="Enter Class email" name="email">
+							class="form-control" id="Email" placeholder="Enter Class email" name="email">
 					</div>
 					<div>
 						<input type="submit" class="btn btn-primary" value="Register" />
@@ -116,7 +119,10 @@ p {
 		</form>
 	</div>
 			
-			
+	
+	
+	
+		
 <%@ include file="footer.jsp"%>
 	
 </body>

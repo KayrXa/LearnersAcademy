@@ -25,6 +25,23 @@ public class Subjects {
 	@Column(name = "Shortcut", unique= false, nullable=false)
 	private String shortcut;
 	
+	
+	
+	
+	
+	
+	public Subjects() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Subjects(int sid, String name, String shortcut) {
+		super();
+		this.sid = sid;
+		this.name = name;
+		this.shortcut = shortcut;
+	}
+
 	public int getSid() {
 		return sid;
 	}
@@ -47,6 +64,11 @@ public class Subjects {
 
 	public void setShortcut(String shortcut) {
 		this.shortcut = shortcut;
+	}
+
+	@Override
+	public String toString() {
+		return "Subjects [sid=" + sid + ", name=" + name + ", shortcut=" + shortcut + "]";
 	}
 	
 	

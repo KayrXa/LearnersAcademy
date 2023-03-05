@@ -1,3 +1,5 @@
+<%@page import="com.bean.ClassesSubjectsTeacherLink"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -44,24 +46,22 @@ p {
 	<div class="container">
 	<table class="table">
 		<tr>
-			<th>Class name</th>
-			<th>Teacher name</th>
-			<th>Subject name</th>
-			<th>Edit</th>
-			<th>Delete</th>
-					</tr>
-	<c:forEach var="classes" items="${request.Scope.classes }"> 
-	
-				<tr>
-				
-				<td>${classes.name}</td>
-				<td>${teachers.name}</td>
-				<td>${subjects.name}</td>
-				<td><a href="edit?email=${classes.name }">Edit</a> </td>
-				<td><a href="delete?email=${classes.brthno }">Delete</a> </td>
+				<th>Id</th>
+				<th>Class Id</th>
+				<th>Subject Id</th>
+				<th>Teacher Id</th>
+			
+			</tr>		
+		<c:forEach var="rel" items="${requestScope.relList }">
+			<tr>
+				<td>${rel.id}</td>
+				<td>${rel.classes}</td>
+				<td>${rel.teachers}</td>
+				<td>${rel.subjects}</td>
+				<td><a href="edit?email=${rel.id}">Edit</a> </td>
+				<td><a href="delete?email=${rel.id}">Del</a> </td>
 			</tr>
-	
-	</c:forEach>
+		</c:forEach>
 		
 		
 	</table>
@@ -78,7 +78,7 @@ p {
 		if(error !=  null){%>
 		<div class="error"><%= error %></div>
 		<%} %>
-		<form action="classes" method="post">
+		<form action="relations" method="post">
 
 			<div class="row">
 				<div class="col-lg-6 col-lg-offset-3">
@@ -94,6 +94,32 @@ p {
 						<label for="sid">Subject Name: </label> <input type="text"
 							class="form-control" id="sid" placeholder="Enter Subject Name" name="sid">
 					</div>
+					
+				<!-- Preparation for option list from DB -->
+				<div class="form-group">
+						<label for="sid">Subject Name: </label> 
+						<select>
+							<option value=1 id="sid">1</option>
+							<option value=2 id="sid">2</option>
+							<option value=3 id="sid">3</option>
+						</select>
+						
+						<label for="sid">Teacher Name: </label> 
+						<select>
+							<option value=1 id="tid">1</option>
+							<option value=2 id="tid">2</option>
+							<option value=3 id="tid">3</option>
+						</select>
+						
+						<label for="sid">Class Name: </label> 
+						<select>
+							<option value=1 id="cid">1</option>
+							<option value=2 id="cid">2</option>
+							<option value=3 id="cid">3</option>
+						</select>
+							
+							
+					</div>	
 						
 					
 					<div>

@@ -1,4 +1,4 @@
-<%@page import="com.bean.Students"%>
+<%@page import="com.bean.Classes"%>
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -36,27 +36,36 @@ p {
 	
 	<%@ include file="header.jsp"%>
 	
+	
+	
 	<h1>Classes table</h1>
 	
 	
 	<div class="container">
 	<table class="table">
 		<tr>
-			<th>Class name</th>
+			<th>Id</th>
+			<th>Subject name</th>
+			<th>Subject shortcut</th>
 			<th>Edit</th>
 			<th>Delete</th>
-					</tr>
-	<c:forEach var="classes" items="${request.Scope.classes }"> 
-	
-				<tr>
+		</tr>
+	<c:forEach var="cls" items="${requestScope.classList}"> 
+		
+			<tr>
+				<td>${ cls.cid}</td>
+				<td>${ cls.name}</td>
 				
-				<td>${classes.name}</td>
-				
-				<td><a href="edit?email=${classes.name }">Edit</a> </td>
-				<td><a href="delete?email=${classes.brthno }">Delete</a> </td>
+				<td><a href="edit?email=${ cls.name}">Edit</a> </td>
+				<td><a href="delete?email=${ cls.name}">Delete</a> </td>
 			</tr>
 	
+	
 	</c:forEach>
+		
+		
+		
+		
 		
 		
 	</table>

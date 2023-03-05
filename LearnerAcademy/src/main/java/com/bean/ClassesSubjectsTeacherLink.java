@@ -14,7 +14,7 @@ public class ClassesSubjectsTeacherLink {
 			
 	  @Id
 	  @GeneratedValue(strategy=GenerationType.IDENTITY)
-	  private long id;
+	  private int id;
 
 	  @ManyToOne
 	  @JoinColumn(name = "classes_cid")
@@ -27,9 +27,18 @@ public class ClassesSubjectsTeacherLink {
 	  @ManyToOne
 	  @JoinColumn(name = "subjects_sid")
 	  private Subjects subjects;
-	
+	 
     
-    public ClassesSubjectsTeacherLink() {
+    public ClassesSubjectsTeacherLink(int id, Classes classes, Teachers teachers, Subjects subjects) {
+		super();
+		this.id = id;
+		this.classes = classes;
+		this.teachers = teachers;
+		this.subjects = subjects;
+	}
+
+
+	public ClassesSubjectsTeacherLink() {
 		super();
 	}
 
@@ -39,7 +48,7 @@ public class ClassesSubjectsTeacherLink {
 	}
 
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -71,6 +80,13 @@ public class ClassesSubjectsTeacherLink {
 
 	public void setSubjects(Subjects subjects) {
 		this.subjects = subjects;
+	}
+
+
+	@Override
+	public String toString() {
+		return "ClassesSubjectsTeacherLink [id=" + id + ", classes=" + classes + ", teachers=" + teachers
+				+ ", subjects=" + subjects + "]";
 	}
 
 

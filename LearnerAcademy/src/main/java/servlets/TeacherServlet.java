@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bean.Students;
+import com.bean.Classes;
+import com.bean.Teachers;
 import com.hibernate.DBconn;
 
 
@@ -20,16 +21,16 @@ import com.hibernate.DBconn;
 /**
  * Servlet implementation class AdminServlet
  */
-@WebServlet("/students")
-public class StudentServlet extends HttpServlet {
+@WebServlet("/teachers")
+public class TeacherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DBconn dbc = new DBconn(); 
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StudentServlet() {
-    	System.out.println("Student Servlet");
+    public TeacherServlet() {
+    	System.out.println("Classes Servlet");
         // TODO Auto-generated constructor stub
     }
 
@@ -40,9 +41,9 @@ public class StudentServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException  {
 		try {
-			List<Students> studentList = dbc.getAllStudents();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("students.jsp");
-			request.setAttribute("studentList", studentList);
+			List<Teachers> teacherList = dbc.getAllTeachers();
+			request.setAttribute("teacherList", teacherList);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("teachers.jsp");
 			dispatcher.forward(request, response);
 							
 		} catch (Exception e) {
@@ -50,34 +51,30 @@ public class StudentServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String brthno = request.getParameter("brthno");
 		String name = request.getParameter("name");
 		String sur = request.getParameter("sur");
-		String cid = request.getParameter("cid");
-		String brthno = request.getParameter("brthno");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
 		
 		
 		System.out.println(name);
 		System.out.println(sur);
-		System.out.println(cid);
 		System.out.println(brthno);
 		System.out.println(phone);
 		System.out.println(email);
 		
-		if(name == null || name.isEmpty() || sur == null || sur.isEmpty() || cid == null || cid.isEmpty())
+		if(name == null || name.isEmpty() || sur == null || sur.isEmpty() )
 		{
-			RequestDispatcher dispatcher = request.getRequestDispatcher("students.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("teachers.jsp");
 			request.setAttribute("error", "No box should stay empty.");
+			request.setAttribute("Birth_number", brthno);
 			request.setAttribute("Name", name);
 			request.setAttribute("Surname", sur);
-			request.setAttribute("cid", cid);
-			request.setAttribute("Birth_number", brthno);
 			request.setAttribute("Phone_number", phone);
 			request.setAttribute("Email", email);
 			dispatcher.forward(request, response);
@@ -86,17 +83,15 @@ public class StudentServlet extends HttpServlet {
 		}
 		
 		DBconn dbcom = new DBconn();
-		Students st = new Students();
+		Teachers teacher = new Teachers();
 		
-		
-	
 		
 		try {
-			if(dbcom.addStudent(st)){
-				response.sendRedirect("students.jsp");
+			if(dbcom.addTeacher(teacher)){
+				response.sendRedirect("teachers.jsp");
 				request.setAttribute("error", "Registration successful.");
 			} else {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("students.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("teachers.jsp");
 				request.setAttribute("error", "Registration unsuccessful.");
 				dispatcher.forward(request, response);
 			}

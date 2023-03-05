@@ -1,4 +1,4 @@
-<%@page import="com.bean.Students"%>
+<%@page import="com.bean.Subjects"%>
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -46,20 +46,21 @@ p {
 	<div class="container">
 	<table class="table">
 		<tr>
+			<th>Id</th>
 			<th>Subject name</th>
 			<th>Subject shortcut</th>
 			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
-	<c:forEach var="students" items="${request.Scope.students }"> 
+	<c:forEach var="subject" items="${requestScope.subjectList}"> 
 		
 			<tr>
-				
+				<td>${subject.sid}</td>
 				<td>${subject.name}</td>
 				<td>${subject.shortcut}</td>
 				
-				<td><a href="edit?email=${subject.name}">Edit</a> </td>
-				<td><a href="delete?email=${subject.name}">Delete</a> </td>
+				<td><a href="edit?email=${subject.sid}">Edit</a> </td>
+				<td><a href="delete?email=${subject.sid}">Delete</a> </td>
 			</tr>
 	
 	
@@ -78,7 +79,7 @@ p {
 		if(error !=  null){%>
 		<div class="error"><%= error %></div>
 		<%} %>
-		<form action="subjects" method="post">
+		<form action="subject" method="post">
 
 			<div class="row">
 				<div class="col-lg-6 col-lg-offset-3">

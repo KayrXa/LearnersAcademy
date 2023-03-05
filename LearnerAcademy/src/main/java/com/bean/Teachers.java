@@ -32,63 +32,97 @@ public class Teachers{
 	private String email;
 	
 	@Column(name = "phone", unique= true, nullable=true)
-	private int phone;
+	private String phone;
 
 	@Column(name = "Birth_number", unique= true, nullable=false)
-	private int brthno;
+	private String brthno;
+
+	
+	
+	
+	public Teachers() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Teachers(int tid, String brthno, String email, String name, String phone, String surname) {
+		super();
+		this.tid = tid;
+		this.name = name;
+		this.brthno = brthno;
+		this.email = email;
+		this.phone = phone;
+		this.surname = surname;
+			
+		
+	}
 
 	public int getTid() {
 		return tid;
 	}
 
+
 	public void setTid(int tid) {
 		this.tid = tid;
+	}
+
+	
+	public String getBrthno() {
+		return brthno;
+	}
+
+
+	public void setBrthno(String brthno) {
+		this.brthno = brthno;
 	}
 
 	public String getName() {
 		return name;
 	}
 
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 
 	public String getSurname() {
 		return surname;
 	}
 
+
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
+
 
 	public String getEmail() {
 		return email;
 	}
 
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public int getPhone() {
+
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	public int getBrthno() {
-		return brthno;
+	
+
+	@Override
+	public String toString() {
+		return "Teachers [tid=" + tid + ", name=" + name + ", surname=" + surname + ", email=" + email + ", phone="
+				+ phone + ", brthno=" + brthno + "]";
 	}
-
-	public void setBrthno(int brthno) {
-		this.brthno = brthno;
-	}
-
-
-
-
-
+	
 
 	
 	

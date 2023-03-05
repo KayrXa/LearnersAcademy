@@ -30,6 +30,19 @@ public class Classes {
 	@JoinColumn(name="cid")
 	private List<Students> students;
 
+	
+	public Classes() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Classes(int cid,String name) {
+		super();
+		this.cid = cid;
+		this.name = name;
+	
+	}
+
 	public Integer getCid() {
 		return cid;
 	}
@@ -52,6 +65,11 @@ public class Classes {
 
 	public void setStudents(List<Students> students) {
 		this.students = students;
+	}
+
+	@Override
+	public String toString() {
+		return "Classes [cid=" + cid + ", name=" + name + ", students=" + students + "]";
 	}
 		
 	

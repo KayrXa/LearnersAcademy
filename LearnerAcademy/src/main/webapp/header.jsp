@@ -13,15 +13,17 @@
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="index.jsp">Home</a></li>
 				
-					<li class="nav-item"><a class="nav-link" href="classes.jsp">Classes</a>
+					<li class="nav-item"><a class="nav-link" href="classes">Classes</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="teachers.jsp">Teachers</a>
+					<li class="nav-item"><a class="nav-link" href="teachers">Teachers</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="students.jsp">Students</a>
+					<li class="nav-item"><a class="nav-link" href="students">Students</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="subjects.jsp">Subjects</a>
+					<li class="nav-item"><a class="nav-link" href="subjects">Subjects</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="relations.jsp">Relations</a>
+					<li class="nav-item"><a class="nav-link" href="relations">Relations</a>
+					</li>		
+					<li class="nav-item"><a class="nav-link" href="overview">Overview</a>
 					</li>		
 				</ul>
 			</div>

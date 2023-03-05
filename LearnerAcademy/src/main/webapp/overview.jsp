@@ -1,4 +1,9 @@
+<%@page import="com.bean.Students"%>
+<%@page import="com.bean.Classes"%>
 <%@page import="com.bean.Teachers"%>
+<%@page import="com.bean.ClassesSubjectsTeacherLink"%>
+<%@page import="com.bean.Subjects"%>
+
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -8,7 +13,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -31,52 +35,71 @@ p {
 }
 </style>
 
+
 </head>
 <body>
 	
 	<%@ include file="header.jsp"%>
 	
-	<!-- Display teachers -->
-	<h1>Teachers table</h1>
+	
+	
+	<h1>Classes table</h1>
 	
 	
 	<div class="container">
 	<table class="table">
 		<tr>
-			<th>Name</th>
-			<th>Surname</th>
-			<th>Birth number</th>
-			<th>Email</th>
-			<th>Phone number</th>
+			<th>Class name</th>
 			<th>Edit</th>
 			<th>Delete</th>
-		
-		</tr>
-	<c:forEach var="tchr" items="${requestScope.teacherList  }"> 
-	
-			<tr>
-				
-				<td>${tchr.tid}</td>
-				<td>${tchr.name}</td>
-				<td>${tchr.surname}</td>
-				<td>${tchr.brthno}</td>
-				<td>${tch.phone}</td>
-				<td>${tch.email}</td>
-			
-				<td><a href="edit?email=${tch.tid }">Edit</a> </td>
-				<td><a href="delete?email=${tch.tid }">Delete</a> </td>
-			</tr>
-		
-	
+					</tr>
+					
+	<!-- display every relation -->				
+<c:forEach items="${requestScope.relList}" var="rel">		
+   	<c:forEach items="${requestScope.classList}" var="cl">
+    		<h4>${cl.name}</h4>
+    		<h5>Students</h5>
+    		<ul>
+    			<c:forEach items="${requestScope.studentList}" var="st">
+    				<c:if test="${st.cid == cl.cid}">
+						<li>${st.name} ${st.sur} ${st.brthno} ${st.phone} ${st.email}</li>
+					</c:if>
+    			</c:forEach>
+    		</ul>
+    		
+	<!-- WORKING ON IT
+    		<h5>Teachers</h5>
+    			<c:forEach items="${requestScope.teacherList}" var="tchr">
+    						
+    						
+    						<c:if test="${tchr.tid == rel.teachers}">
+						<li>${tchr.name} ${tchr.sur} ${tchr.sur} ${tchr.brthno} ${tchr.phone} ${tch.email}</li>
+							</c:if>
+    			</c:forEach>
+    		
+    		<br>
+    		<h5>Subjects</h5>
+    			<c:forEach items="${requestScope.teacherList}" var="tchr">
+    				
+					<li>${tchr.name} ${tchr.sur} ${tchr.sur} ${tchr.brthno} ${tchr.phone} ${tch.email}</li>
+					
+    			</c:forEach>
+     -->			
+    		<br>
 	</c:forEach>
+</c:forEach>		
 		
-	
+		
+		
+		
+		
+		
+		
 	</table>
 	</div>
 	
-	<!-- Adding teachers -->
 	<div class="container">
-		<h5>Register a new Teacher</h5>
+		<h5>Register a new Class</h5>
 	</div>
 	<div class="container">	
 		<%
@@ -84,41 +107,16 @@ p {
 		if(error !=  null){%>
 		<div class="error"><%= error %></div>
 		<%} %>
-		<form action="teachers" method="post">
+		<form action="classes" method="post">
 
 			<div class="row">
 				<div class="col-lg-6 col-lg-offset-3">
+					<div class="form-group">
+						<label for="name">Class Name: </label> <input type="text"
+							class="form-control" id="name" placeholder="Enter Class Name" name="name">
+					</div>
+						
 					
-
-					<div class="form-group">
-						<label for="brthno">Birth number: </label> <input type="text"
-							class="form-control" id="brthno" placeholder="Enter Birth number" name="brthno">
-					</div>
-					
-					<div class="form-group">
-						<label for="email">Email: </label> <input type="text"
-							class="form-control" id="email" placeholder="Enter Email" name="email">
-					</div>
-
-					<div class="form-group">
-						<label for="name">Teacher's Name: </label> <input type="text"
-							class="form-control" id="name" placeholder="Enter First Name" name="name">
-					</div>
-
-					<div class="form-group">
-						<label for="phone">Phone number: </label> <input type="text"
-							class="form-control" id="phone" placeholder="Enter Phone number" name="phone">
-					</div>
-
-
-					<div class="form-group">
-						<label for="surname">Teachers's Surname: </label> <input type="text"
-							class="form-control" id="Surname" placeholder="Enter Surname" name="sur">
-					</div>
-
-					
-					
-
 					<div>
 						<input type="submit" class="btn btn-primary" value="Register" />
 					</div>
@@ -127,7 +125,6 @@ p {
 		</form>
 	</div>
 	
-<%@ include file="footer.jsp"%>
-	
+	<%@ include file="footer.jsp"%>
 </body>
 </html>
