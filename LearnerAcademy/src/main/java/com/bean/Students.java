@@ -38,7 +38,7 @@ public class Students  {
 	private String email;
 	
 	@Column(name = "cid", unique= true, nullable=true)
-	private int cid;	
+	private String cid;	
 	
 	
 	public Students() {
@@ -47,9 +47,8 @@ public class Students  {
 	}
 
 
-	public Students(int stid, String name, String sur, String brthno, String phone, String email, int cid) {
+	public Students(String name, String sur, String brthno, String phone, String email, String cid) {
 		super();
-		this.stid = stid;
 		this.name = name;
 		this.sur = sur;
 		this.brthno = brthno;
@@ -58,11 +57,11 @@ public class Students  {
 		this.cid = cid;
 	}
 		
-	public int getCid() {
+	public String getCid() {
 		return cid;
 	}
 
-	public void setCid(int cid) {
+	public void setCid(String cid) {
 		this.cid = cid;
 	}
 

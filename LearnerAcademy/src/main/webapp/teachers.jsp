@@ -43,6 +43,7 @@ p {
 	<div class="container">
 	<table class="table">
 		<tr>
+			<th>Id</th>
 			<th>Name</th>
 			<th>Surname</th>
 			<th>Birth number</th>

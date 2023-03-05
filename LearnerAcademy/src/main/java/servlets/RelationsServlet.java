@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bean.Classes;
 import com.bean.ClassesSubjectsTeacherLink;
+import com.bean.Students;
+import com.bean.Subjects;
+import com.bean.Teachers;
 import com.hibernate.DBconn;
 
 /**
@@ -34,8 +38,14 @@ public class RelationsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			List<Classes> classList = dbc.getAllClasses();
+			List<Teachers> teacherList = dbc.getAllTeachers();
+			List<Subjects> subjectList = dbc.getAllSubjects();
 			List<ClassesSubjectsTeacherLink> relList = dbc.getAllRelations();
-			request.setAttribute("relList", relList);
+			request.setAttribute("classList", classList);	
+			request.setAttribute("teacherList", teacherList);	
+			request.setAttribute("subjectList", subjectList);
+			request.setAttribute("relList", relList);	
 			RequestDispatcher dispatcher = request.getRequestDispatcher("relations.jsp");
 			dispatcher.forward(request, response);
 							
@@ -49,15 +59,15 @@ public class RelationsServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String cid = request.getParameter("cid");
-		String tid = request.getParameter("tid");
-		String sid = request.getParameter("sid");
+		String cid = request.getParameter("classes");
+		String tid = request.getParameter("teachers");
+		String sid = request.getParameter("subjects");
 		
 		System.out.println(cid);
 		System.out.println(tid);
 		System.out.println(sid);
 	
-		if(cid == null || cid.isEmpty() || tid == null || tid.isEmpty() || sid == null || sid.isEmpty())
+		if(cid == null || cid.isEmpty() )
 		{
 			RequestDispatcher dispatcher = request.getRequestDispatcher("relations.jsp");
 			request.setAttribute("error", "No box should stay empty.");
@@ -77,10 +87,10 @@ public class RelationsServlet extends HttpServlet {
 		
 		try {
 			if(dbcom.addRelation(rel)){
-				response.sendRedirect("relations.jsp");
+				response.sendRedirect("relations");
 				request.setAttribute("error", "Registration successful.");
 			} else {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("relations.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("relations");
 				request.setAttribute("error", "Registration unsuccessful.");
 				dispatcher.forward(request, response);
 			}

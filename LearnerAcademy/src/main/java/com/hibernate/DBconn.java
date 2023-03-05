@@ -289,7 +289,7 @@ public class DBconn {
 		return success;
 	}
 	
-	public boolean deleteClassById(int cid) {
+	public boolean deleteClassById(String cid) {
 		boolean success = true;
 		Session session = factory.openSession();
 		Transaction transaction = null;

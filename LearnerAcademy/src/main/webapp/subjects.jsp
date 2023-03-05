@@ -79,7 +79,7 @@ p {
 		if(error !=  null){%>
 		<div class="error"><%= error %></div>
 		<%} %>
-		<form action="subject" method="post">
+		<form action="subjects" method="post">
 
 			<div class="row">
 				<div class="col-lg-6 col-lg-offset-3">

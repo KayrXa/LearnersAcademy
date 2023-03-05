@@ -29,9 +29,8 @@ public class ClassesSubjectsTeacherLink {
 	  private Subjects subjects;
 	 
     
-    public ClassesSubjectsTeacherLink(int id, Classes classes, Teachers teachers, Subjects subjects) {
+    public ClassesSubjectsTeacherLink(Classes classes, Teachers teachers, Subjects subjects) {
 		super();
-		this.id = id;
 		this.classes = classes;
 		this.teachers = teachers;
 		this.subjects = subjects;
@@ -51,6 +50,8 @@ public class ClassesSubjectsTeacherLink {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+
 
 
 	public Classes getClasses() {

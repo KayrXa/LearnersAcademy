@@ -88,10 +88,10 @@ public class TeacherServlet extends HttpServlet {
 		
 		try {
 			if(dbcom.addTeacher(teacher)){
-				response.sendRedirect("teachers.jsp");
+				response.sendRedirect("teachers");
 				request.setAttribute("error", "Registration successful.");
 			} else {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("teachers.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("teachers");
 				request.setAttribute("error", "Registration unsuccessful.");
 				dispatcher.forward(request, response);
 			}

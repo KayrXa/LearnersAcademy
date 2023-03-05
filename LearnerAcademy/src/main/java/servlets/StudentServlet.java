@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bean.Classes;
 import com.bean.Students;
 import com.hibernate.DBconn;
 
@@ -41,8 +42,11 @@ public class StudentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException  {
 		try {
 			List<Students> studentList = dbc.getAllStudents();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("students.jsp");
+			List<Classes> classList = dbc.getAllClasses();
 			request.setAttribute("studentList", studentList);
+			request.setAttribute("classList", classList);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("students.jsp");
+			
 			dispatcher.forward(request, response);
 							
 		} catch (Exception e) {
@@ -86,17 +90,19 @@ public class StudentServlet extends HttpServlet {
 		}
 		
 		DBconn dbcom = new DBconn();
-		Students st = new Students();
+		
+		
+		Students st = new Students(name, sur, cid, brthno, phone, email);
 		
 		
 	
 		
 		try {
 			if(dbcom.addStudent(st)){
-				response.sendRedirect("students.jsp");
+				response.sendRedirect("students");
 				request.setAttribute("error", "Registration successful.");
 			} else {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("students.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("students");
 				request.setAttribute("error", "Registration unsuccessful.");
 				dispatcher.forward(request, response);
 			}

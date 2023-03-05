@@ -21,7 +21,7 @@ public class Classes {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cid", unique= true, nullable=false)
-	private Integer cid;
+	private String cid;
 	
 	@Column(name = "name", unique= true, nullable=false)
 	private String name;
@@ -31,23 +31,31 @@ public class Classes {
 	private List<Students> students;
 
 	
+	
+	
 	public Classes() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Classes(int cid,String name) {
+	public Classes(String name) {
+		super();
+		this.name = name;
+		// TODO Auto-generated constructor stub
+	}
+
+	public Classes(String cid,String name) {
 		super();
 		this.cid = cid;
 		this.name = name;
 	
 	}
 
-	public Integer getCid() {
+	public String getCid() {
 		return cid;
 	}
 
-	public void setCid(Integer cid) {
+	public void setCid(String cid) {
 		this.cid = cid;
 	}
 

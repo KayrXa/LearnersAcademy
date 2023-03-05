@@ -1,4 +1,5 @@
 <%@page import="com.bean.Students"%>
+<%@page import="com.bean.Classes"%>
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -96,8 +97,18 @@ p {
 							class="form-control" id="Surname" placeholder="Enter Surname" name="sur">
 					</div>
 					<div class="form-group">
-						<label for="cid">Class ID: </label> <input type="text"
-							class="form-control" id="cid" placeholder="Enter Class ID" name="cid">
+						<label for="cid">Class ID: </label> 
+						
+					<input type="text"
+							class="form-control" id="cid" placeholder="Enter Class id" name="cid">
+					<!--Select from classes, not working yet	
+						<select class="form-control" id="cid" name="cid">
+							<c:forEach var="cls" items="${ requestScope.classList}">
+								<option value="${cls.cid}">${cls.cname}</option>
+							</c:forEach>
+						</select>
+					  -->	
+						
 					</div>
 					<div class="form-group">
 						<label for="brthno">Birth number: </label> <input type="text"

@@ -35,9 +35,8 @@ public class Subjects {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Subjects(int sid, String name, String shortcut) {
+	public Subjects(String name, String shortcut) {
 		super();
-		this.sid = sid;
 		this.name = name;
 		this.shortcut = shortcut;
 	}

@@ -45,9 +45,8 @@ public class Teachers{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Teachers(int tid, String brthno, String email, String name, String phone, String surname) {
+	public Teachers(String brthno, String email, String name, String phone, String surname) {
 		super();
-		this.tid = tid;
 		this.name = name;
 		this.brthno = brthno;
 		this.email = email;

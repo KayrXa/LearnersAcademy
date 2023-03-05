@@ -60,7 +60,7 @@ public class SubjectsServlet extends HttpServlet {
 	
 		if(name == null || name.isEmpty() )
 		{
-			RequestDispatcher dispatcher = request.getRequestDispatcher("subjects");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("subjects.jsp");
 			request.setAttribute("error", "No box should stay empty.");
 			request.setAttribute("Name", name);
 			request.setAttribute("Shortcut", shortcut);
@@ -70,7 +70,7 @@ public class SubjectsServlet extends HttpServlet {
 		}
 		
 		DBconn dbcom = new DBconn();
-		Subjects sub = new Subjects();
+		Subjects sub = new Subjects(name, shortcut);
 		
 		
 	

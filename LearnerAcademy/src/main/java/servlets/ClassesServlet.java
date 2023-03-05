@@ -55,8 +55,9 @@ public class ClassesServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String cid = request.getParameter("cid");;
 		String name = request.getParameter("name");
-	
+		
 		//Addin new Student 
 		
 		System.out.println(name);
@@ -65,24 +66,26 @@ public class ClassesServlet extends HttpServlet {
 		{
 			RequestDispatcher dispatcher = request.getRequestDispatcher("classes.jsp");
 			request.setAttribute("error", "No box should stay empty.");
+			request.setAttribute("cid", cid);
 			request.setAttribute("Name", name);
+			
 			dispatcher.forward(request, response);
 
 			return;
 		}
 		
 		DBconn dbcom = new DBconn();
-		Classes cls = new Classes();
+		Classes cls = new Classes(cid, name);
 		
 		
 	
 		
 		try {
 			if(dbcom.addClass(cls)){
-				response.sendRedirect("classes.jsp");
+				response.sendRedirect("classes");
 				request.setAttribute("error", "Registration successful.");
 			} else {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("classes.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("classes");
 				request.setAttribute("error", "Registration unsuccessful.");
 				dispatcher.forward(request, response);
 			}
